@@ -24,7 +24,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .btn-primary {
-  background-color: #076abe;
+  border: 1px solid #076abe;
   border: none;
   width: 195px;
   height: 60px;
