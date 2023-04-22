@@ -71,4 +71,7 @@ h2 {
 img {
   width: 80%;
 }
+p {
+  font-size: 26px;
+}
 </style>
