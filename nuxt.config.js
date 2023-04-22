@@ -18,6 +18,10 @@ export default {
         type: 'text/css',
         href: 'https://fonts.cdnfonts.com/css/nunito-sans" rel="stylesheet',
       },
+      {
+        rel: "stylesheet",
+        href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      }
     ],
   },
 
@@ -25,7 +29,9 @@ export default {
   css: ['~assets/css/style.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: {

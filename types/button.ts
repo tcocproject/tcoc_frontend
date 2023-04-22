@@ -1,6 +1,7 @@
 interface Button {
     title:string,
-    hasBackground:boolean,
+    hasBackground: boolean,
+    link:string
 
 }
 

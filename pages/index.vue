@@ -35,23 +35,23 @@
       <section class="card-section">
         <div class="row">
           <div class="col-lg-3">
-            <Card headline:string="Wide reach of Talents" />
+            <Card :cardData="cardData[0]" />
           </div>
           <div class="col-lg-3">
-            <Card />
+            <Card :cardData="cardData[1]" />
           </div>
           <div class="col-lg-3">
-            <Card />
+            <Card :cardData="cardData[2]" />
           </div>
           <div class="col-lg-3">
-            <Card />
+            <Card :cardData="cardData[3]" />
           </div>
         </div>
       </section>
     </div>
     <section class="home-container">
       <div class="we-offer-section">
-        <h3 class="text-center">WHAT WE OFFER</h3>
+        <h3 class="text-center mt-5 mb-5">WHAT WE OFFER</h3>
         <b-row>
           <div class="col-lg-6">
             <h3>Profile Talent</h3>
@@ -61,7 +61,7 @@
               organization. Talents are profiled across skill, education and
               experience.
             </p>
-            <Button :buttonData="buttonData[1]" />
+            <BorderButton :buttonData="buttonData[1]" />
           </div>
           <div class="group-div">
             <b-img
@@ -84,12 +84,11 @@
             </b-img>
           </b-col>
           <b-col>
-            <h3>Profile Talent</h3>
+            <h3>Culture fit Analytics</h3>
             <p>
-              Intuitive employee profiling system uses AI and Culture Fit
-              Analytics to match talents to the right role in the right
-              organization. Talents are profiled across skill, education and
-              experience.
+              To aid hiring decisions, we provide a culture assessment for
+              talents at sign up. The report can be shared with potential
+              employer upon request.
             </p>
             <Button :buttonData="buttonData[1]" />
           </b-col>
@@ -98,7 +97,7 @@
       <div class="we-offer-section">
         <b-row>
           <b-col>
-            <h3>Build a brilliant team now</h3>
+            <h3>Build a <em>brilliant</em> team now</h3>
             <p>
               We specialize in connecting right fit talents to leading companies
             </p>
@@ -125,17 +124,17 @@
               </div>
             </div>
             <div>
-              <span>Create Job Description</span>
+              <span class="job-heading">Create Job Description</span>
               <blockquote>
                 Our smart AI helps you create a job posting, employee benefit
                 and so on.
               </blockquote>
-              <span>Discover the best Talent</span>
+              <span class="job-heading">Discover the best Talent</span>
               <blockquote>
                 Our smart AI helps you create a job posting, employee benefit
                 and so on.
               </blockquote>
-              <span>Continue your progress</span>
+              <span class="job-heading">Continue your progress</span>
               <blockquote>
                 You've spent a lot of money on recruitment. You don't want a new
                 hire out of the door in months. Self onboard talents with our
@@ -162,6 +161,7 @@
 import { defineComponent, ref } from 'vue'
 import Footer from '~/components/home/Footer.vue'
 import Button from '../types/button'
+import CardData from '../types/card'
 
 export default defineComponent({
   components: { Footer },
@@ -170,14 +170,39 @@ export default defineComponent({
       {
         title: 'Post a Job',
         hasBackground: false,
+        link: '',
       },
       {
         title: 'Try for free',
         hasBackground: false,
+        link: '',
+      },
+    ])
+    const cardData = ref<CardData[]>([
+      {
+        heading: 'Wide reach of Talent',
+        description: 'Hire the talents tailored for your hiring needs',
+        image: 'globe.svg',
+      },
+      {
+        heading: 'Attractive Job Post',
+        description: 'TCOC helps you to create an attractive job description',
+        image: 'job_post.svg',
+      },
+      {
+        heading: 'Communication',
+        description:
+          'Easily chat with and set up interviews with your desired talent',
+        image: 'communication.svg',
+      },
+      {
+        heading: 'Employee Advice',
+        description: 'We provide tips on how to find talents and retain',
+        image: 'employee_advice.svg',
       },
     ])
 
-    return { buttonData }
+    return { buttonData, cardData }
   },
 
   data() {
@@ -189,6 +214,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.row {
+  width: 1350px;
+}
+h2 {
+  margin-top: 80px;
+  font-size: 64px;
+}
 .stay-updated {
   margin-top: 100px;
   position: relative;
@@ -197,6 +229,10 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.card-section {
+  margin-top: 180px;
+  justify-content: space-between;
 }
 .stay-updated::before {
   content: '';
@@ -221,7 +257,7 @@ export default defineComponent({
 .circle {
   width: 50px;
   height: 50px;
-  border: 1px solid black;
+  border: 1px solid #076abe;
   border-radius: 50%;
   position: relative;
 }
@@ -238,7 +274,7 @@ h5 {
 .vertical-line {
   width: 2px;
   height: 50px;
-  background: #2ecc71;
+  background: #076abe;
   margin-left: 24px;
 }
 
@@ -249,12 +285,9 @@ h5 {
 .talent-picture {
   width: 25rem;
 }
-.card-section {
-  display: flex;
-  margin-top: 200px;
+.row {
   align-content: center;
-
-  flex-wrap: nowrap;
+  align-items: center;
 }
 .container {
   margin-left: 40px;
@@ -263,10 +296,12 @@ h5 {
 .group-div {
   position: absolute;
   right: 0;
+  margin-top: 100px;
 }
 p {
-  font-size: 20px;
+  font-size: 26px;
   margin-top: 30px;
+  font-weight: 300;
 }
 .arrow-image {
   width: 40px;
@@ -276,7 +311,7 @@ p {
 }
 span {
   font-size: 28px;
-  color: #076abe;
+
   font-weight: 600px;
   padding-left: 25px;
   padding-right: 10px;
@@ -284,5 +319,13 @@ span {
 
 .button-area {
   margin-top: 30px;
+}
+
+.job-heading {
+  color: black;
+}
+blockquote {
+  margin-left: 20px;
+  padding-left: 40px;
 }
 </style>

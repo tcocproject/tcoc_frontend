@@ -1,13 +1,14 @@
 <template lang="">
   <div>
     <div class="split left">
-      <b-img src="../assets/images/lady_signup.svg"></b-img>
+      <div class="background-circle"></div>
+      <b-img src="../assets/images/lady_signup.svg" class="lady"></b-img>
     </div>
 
     <div class="split right">
       <div class="heading">
         <b-img class="logo" src="../assets/images/logo.svg"> </b-img>
-        <Button :buttonData="buttonData" />
+        <BorderButton :buttonData="buttonData[1]" />
       </div>
       <div class="centered">
         <h5>Are you a recruiter or a company</h5>
@@ -18,14 +19,16 @@
               <h5>Recruiter</h5>
             </div>
           </nuxt-link>
-          <div class="circle">
-            <b-img src="../assets/images/company.svg"> </b-img>
-            <h5>Company</h5>
-          </div>
+          <nuxt-link to="/company_signup">
+            <div class="circle">
+              <b-img src="../assets/images/company.svg"> </b-img>
+              <h5>Company</h5>
+            </div>
+          </nuxt-link>
         </div>
 
         <div class="button">
-          <Button :buttonData="buttonData" />
+          <Button :buttonData="buttonData[0]" />
         </div>
       </div>
     </div>
@@ -38,16 +41,31 @@ import Button from '../types/button'
 
 export default defineComponent({
   setup() {
-    const buttonData = ref<Button>({
-      title: 'Continue',
-      hasBackground: false,
-    })
+    const buttonData = ref<Button[]>([
+      {
+        title: 'Continue',
+        hasBackground: false,
+        link: '',
+      },
+
+      {
+        title: 'Login',
+        hasBackground: false,
+        link: '/login',
+      },
+    ])
 
     return { buttonData }
   },
 })
 </script>
 <style scoped>
+.lady {
+  position: fixed;
+  left: 0%;
+  width: 50%;
+}
+
 .button {
   margin-top: 80px;
 }
@@ -60,11 +78,11 @@ export default defineComponent({
   margin-top: 80px;
 }
 .circle {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   background: #ebf3fa;
   border-radius: 50%;
-  padding-top: 30px;
+  padding-top: 50px;
   margin-bottom: 40px;
 }
 
@@ -74,12 +92,12 @@ export default defineComponent({
 .heading {
   display: flex;
   justify-content: space-between;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 10px;
+  padding-right: 10%;
 }
 .split {
   height: 100%;
-  width: 50%;
+  width: 40%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -89,13 +107,14 @@ export default defineComponent({
 
 .left {
   left: 0;
-  background-color: #111;
+  background-color: #a2c2de;
 }
 img {
   width: 80%;
 }
 .right {
   right: 0;
+  width: 58%;
 }
 .logo {
   width: 120px;

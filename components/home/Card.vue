@@ -1,11 +1,28 @@
+import { PropType } from 'vue' import { PropType } from
+'vue/types/v3-component-props'
 <template lang="">
-  <div class="shadow p-3 mb-5 bg-white rounded text-center">
-    <b-img src="../../assets/images/globe.svg"></b-img> <br />
-    <strong> Wide reach of Talents</strong>
-    <p>Hire the talents tailored for your hiring needs</p>
+  <div class="shadow p-3 mb-5 bg-white rounded text-center ">
+ 
+    <img :src="require('../../assets/images/'+cardData.image + '')" alt=""></img> <br />
+    <strong> {{ cardData.heading }}</strong>
+    <p>{{ cardData.description }}</p>
+
   </div>
 </template>
 <script lang="ts">
-export default {}
+import { PropType } from 'vue';
+import CardData from '~/types/card';
+export default {
+  props: {
+    cardData: {
+      required: true,
+      type: Object as PropType<CardData>,
+    },
+  },
+}
 </script>
-<style scoped></style>
+<style scoped>
+div{
+  height:250px;
+}
+</style>
