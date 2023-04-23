@@ -2,10 +2,10 @@
 FROM node:alpine as builder
 
 # set the working directory for container
-WORKDIR /frontend
+WORKDIR /app
 
 # copy the json file into the conatiner file system first
-COPY ./package.json /frontend
+COPY ./*package.json /app
 
 # install npm dependencies
 RUN npm install
@@ -18,4 +18,6 @@ RUN npm run build
 
 # Handle Nginx 
 FROM nginx
-COPY --from=builder /frontend/dist /usr/share/nginx/html
+RUN mkdir /app
+COPY --from=builder /app/dist  /app
+COPY nginx.conf /etc/nginx/nginx.conf
