@@ -26,7 +26,7 @@ export default defineComponent({
 .btn-primary {
   background-color: #076abe;
   border: none;
-  width: 195px;
+  width: 200px;
   height: 60px;
   border-radius: 50px;
   font-size: 22px;

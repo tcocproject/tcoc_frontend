@@ -5,14 +5,8 @@
     <div class="hero">
       <div class="background-container">
         <h2>
-          The way we work is <br />
-          evolving The way we hire <br />
-          should.
+          Frequently <b>Asked <br />Questions </b>
         </h2>
-        <p>
-          Scale your team and business with ease. <br />
-          Explore our recruitment solutions
-        </p>
       </div>
     </div>
     <br />
@@ -106,10 +100,10 @@ h4 {
   margin-top: 100px;
 }
 .hero {
-  background-image: url('../../assets/images/happy_man.svg');
+  background-image: url('../../assets/images/faq.svg');
   background-size: cover;
   position: relative;
-  height: 600px;
+  height: 400px;
   width: 100%;
 }
 
@@ -118,8 +112,8 @@ h4 {
   font-size: 26px;
 }
 .background-container {
-  background: linear-gradient(to left, rgba(255, 0, 0, 0), #076abe);
-  height: 600px;
+  background: linear-gradient(to left, rgba(255, 0, 0, 0), #113c80);
+  height: 400px;
   padding: 60px;
 }
 h2 {

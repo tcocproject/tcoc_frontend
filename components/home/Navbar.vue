@@ -12,7 +12,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <nuxt-link to="">
+          <nuxt-link to="/recruiter/employer">
             <b-nav-item href="#">Employers</b-nav-item></nuxt-link
           >
         </b-navbar-nav>
@@ -24,7 +24,9 @@
           <b-nav-item-dropdown text="Company">
             <b-dropdown-item href="#">About Us</b-dropdown-item>
             <b-dropdown-item href="#">FAQs</b-dropdown-item>
-            <b-dropdown-item href="#">Cibtact Us</b-dropdown-item>
+            <b-dropdown-item href="#">
+              <nuxt-link to="/contact"> Contact us</nuxt-link>
+            </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
         <b-navbar-nav>
@@ -34,7 +36,7 @@
         </b-navbar-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <nuxt-link to="/account-type" right>Login</nuxt-link>
+          <nuxt-link to="/login" right>Login</nuxt-link>
         </b-navbar-nav>
         <b-navbar-nav>
           <button
@@ -44,7 +46,7 @@
             aria-pressed="false"
             autocomplete="off"
           >
-            Sign Up
+            <nuxt-link to="/account-type">Sign Up</nuxt-link>
           </button>
         </b-navbar-nav>
       </b-collapse>
@@ -59,19 +61,15 @@ export default {}
   background-color: #076abe;
   border: none;
   width: 143px;
-  height: 40px;
+  height: 46px;
   border-radius: 50px;
   font-size: 18px;
 }
-.navbar {
-  height: 80px;
-}
+
 .navbar-nav {
   padding-left: 30px;
-  text-align: center;
-  align-content: center;
-  align-items: center;
-  font-size: 20px;
+
+  font-size: 24px;
 }
 .job-searching {
   background: #6a9ecc;

@@ -1,30 +1,32 @@
 <template lang="">
   <div class="footer">
-    <b-container>
-      <b-row>
-        <b-col>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4">
           <h5>About us</h5>
           <ul>
-            <li><a href="">About Us</a></li>
-            <li><a href="">Recruitment &amp; Policies</a></li>
-            <li><a href="">Careers</a></li>
-            <li><a href="">Content Integrity</a></li>
-            <li><a href="">Terms of Use</a></li>
-            <li><a href="">Privacy &amp; Cookies Statement</a></li>
+            <li><nuxt-link to="">About us</nuxt-link></li>
+            <li><nuxt-link to="">Recruitment &amp; Policies</nuxt-link></li>
+            <li><nuxt-link to=""> Careers</nuxt-link></li>
+            <li><nuxt-link to="">Content Integrity</nuxt-link></li>
+            <li><nuxt-link to="">Terns of Use</nuxt-link></li>
+            <li>
+              <nuxt-link to="">Privacy &amp; Cookies Statement</nuxt-link>
+            </li>
             <b-img class="logo" src="../../assets/images/logo_white.svg">
             </b-img>
             <p>2023 TCOC LLC All rights reserved</p>
           </ul>
-        </b-col>
-        <b-col>
+        </div>
+        <div class="col-lg-4">
           <h5>Explore</h5>
           <ul>
             <li><a href="">Write a review</a></li>
             <li><a href="">Join Our Community</a></li>
             <li><a href="">Help Center</a></li>
           </ul>
-        </b-col>
-        <b-col>
+        </div>
+        <div class="col-lg-4">
           <a href="">
             <b-img src="../../assets/images/facebook.svg"> </b-img
           ></a>
@@ -36,9 +38,9 @@
             <b-img src="../../assets/images/linkedin.svg"> </b-img
           ></a>
           <a href=""> <b-img src="../../assets/images/youtube.svg"> </b-img></a>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts">

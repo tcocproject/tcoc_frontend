@@ -85,9 +85,9 @@ export default defineComponent({
   setup() {
     const buttonData = ref<Button[]>([
       {
-        title: 'Login',
+        title: 'Sign Up',
         hasBackground: false,
-        link: '',
+        link: '/signup',
       },
 
       {

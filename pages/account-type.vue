@@ -127,4 +127,10 @@ img {
   transform: translate(-50%, -5%);
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .left {
+    display: none;
+  }
+}
 </style>

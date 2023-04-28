@@ -1,28 +1,30 @@
 <template>
   <div>
     <Navbar />
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6">
           <h2>
             Easily discover <br />
-            the right talent
+            the right talent.
           </h2>
-          <p>
-            Transform your team with our comprehension HR Service - From
+          <p class="hero-paragraph">
+            Transform your team with our <br />
+            comprehensive HR Services - From <br />
             recruitment to retention
           </p>
-          <div class="button-area">
-            <Button :buttonData="buttonData[0]" /> <span>Apply for Jobs</span>
-            <b-img
-              src="../assets/images/arrow_left.svg"
-              fluid
-              class="arrow-image"
-              alt="group-image"
-            ></b-img>
-          </div>
+          <Button :buttonData="buttonData[0]" />
+          <span class="hero-text">
+            <nuxt-link to="">Apply for Jobs</nuxt-link>
+          </span>
+          <b-img
+            src="../assets/images/arrow_left.svg"
+            fluid
+            class="arrow-image"
+            alt="group-image"
+          ></b-img>
         </div>
-        <div class="group-div">
+        <div class="col-lg-6">
           <b-img
             src="../assets/images/group_image.svg"
             fluid
@@ -32,139 +34,104 @@
           </b-img>
         </div>
       </div>
-      <section class="card-section">
-        <div class="row">
-          <div class="col-lg-3">
-            <Card :cardData="cardData[0]" />
-          </div>
-          <div class="col-lg-3">
-            <Card :cardData="cardData[1]" />
-          </div>
-          <div class="col-lg-3">
-            <Card :cardData="cardData[2]" />
-          </div>
-          <div class="col-lg-3">
-            <Card :cardData="cardData[3]" />
-          </div>
-        </div>
-      </section>
-    </div>
-    <section class="home-container">
-      <div class="we-offer-section">
-        <h3 class="text-center mt-5 mb-5">WHAT WE OFFER</h3>
-        <b-row>
-          <div class="col-lg-6">
-            <h3>Profile Talent</h3>
-            <p>
-              Intuitive employee profiling system uses AI and Culture Fit
-              Analytics to match talents to the right role in the right
-              organization. Talents are profiled across skill, education and
-              experience.
-            </p>
-            <BorderButton :buttonData="buttonData[1]" />
-          </div>
-          <div class="group-div">
-            <b-img
-              class="talent-picture"
-              src="../assets/images/talent_picture.svg"
-              alt="talent-picture"
-            >
-            </b-img>
-          </div>
-        </b-row>
-      </div>
-      <div class="we-offer-section">
-        <b-row>
-          <b-col>
-            <b-img
-              class="talent-picture"
-              src="../assets/images/culture_fit.svg"
-              alt="talent-picture"
-            >
-            </b-img>
-          </b-col>
-          <b-col>
-            <h3>Culture fit Analytics</h3>
-            <p>
-              To aid hiring decisions, we provide a culture assessment for
-              talents at sign up. The report can be shared with potential
-              employer upon request.
-            </p>
-            <Button :buttonData="buttonData[1]" />
-          </b-col>
-        </b-row>
-      </div>
-      <div class="we-offer-section">
-        <b-row>
-          <b-col>
-            <h3>Build a <em>brilliant</em> team now</h3>
-            <p>
-              We specialize in connecting right fit talents to leading companies
-            </p>
-            <span>Hire Talents</span>
-            <b-img
-              src="../assets/images/arrow_left.svg"
-              fluid
-              class="arrow-image"
-              alt="group-image"
-            ></b-img>
-          </b-col>
-          <b-col>
-            <div class="wrapper">
-              <div class="circle">
-                <h5>1</h5>
-              </div>
-              <div class="vertical-line"></div>
-              <div class="circle">
-                <h5>2</h5>
-              </div>
-              <div class="vertical-line"></div>
-              <div class="circle">
-                <h5>3</h5>
-              </div>
-            </div>
-            <div>
-              <span class="job-heading">Create Job Description</span>
-              <blockquote>
-                Our smart AI helps you create a job posting, employee benefit
-                and so on.
-              </blockquote>
-              <span class="job-heading">Discover the best Talent</span>
-              <blockquote>
-                Our smart AI helps you create a job posting, employee benefit
-                and so on.
-              </blockquote>
-              <span class="job-heading">Continue your progress</span>
-              <blockquote>
-                You've spent a lot of money on recruitment. You don't want a new
-                hire out of the door in months. Self onboard talents with our
-                automated starter pack.
-              </blockquote>
-            </div>
-          </b-col>
-        </b-row>
-      </div>
-    </section>
 
+      <div class="row card-div">
+        <div class="col-lg-3">
+          <Card :cardData="cardData[0]" />
+        </div>
+        <div class="col-lg-3">
+          <Card :cardData="cardData[1]" />
+        </div>
+        <div class="col-lg-3">
+          <Card :cardData="cardData[2]" />
+        </div>
+        <div class="col-lg-3">
+          <Card :cardData="cardData[3]" />
+        </div>
+      </div>
+      <h4 class="text-center">WHAT WE OFFER</h4>
+      <div class="row mt-5">
+        <div class="col-lg-6">
+          <h5>Profile Talent</h5>
+          <p>
+            Intuitive employee profiling system uses AI and Culture Fit
+            Analytics to match talents to the right role in the right
+            organization. Talents are profiled across skill, education and
+            experience.
+          </p>
+          <BorderButton :buttonData="buttonData[1]" />
+        </div>
+        <div class="col-lg-6">
+          <b-img
+            class="talent-picture"
+            src="../assets/images/talent_picture.svg"
+            alt="talent-picture"
+          >
+          </b-img>
+        </div>
+      </div>
+      <div class="row mb-5 mt-5">
+        <div class="col-lg-6">
+          <b-img
+            class="talent-picture"
+            src="../assets/images/culture_fit.svg"
+            alt="talent-picture"
+          >
+          </b-img>
+        </div>
+        <div class="col-lg-6">
+          <h5>Culture Fit Analytics</h5>
+          <p>
+            To aid hiring decisions, we provide a culture assessment for talents
+            at sign up. The report can be shared with potential employer upon
+            request
+          </p>
+          <Button :buttonData="buttonData[2]" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <h5>Build a <i>brilliant</i> team now</h5>
+          <p>
+            We specialize in connectiong right fit talents to leading companies
+          </p>
+          <span class="hire-talent">
+            <nuxt-link to="">Hire Talent</nuxt-link>
+          </span>
+          <b-img
+            src="../assets/images/arrow_left.svg"
+            fluid
+            class="arrow-image"
+            alt="group-image"
+          ></b-img>
+        </div>
+        <div class="col-lg-6">
+          <circle-vertical />
+        </div>
+      </div>
+    </div>
     <div class="stay-updated">
-      <h1>Stay updated</h1>
-      <p style="color: white">
-        Stay updated with new features, product development and offers or to
-        receive our newsletters on Recruitment.
-      </p>
+      <div class="stay-updated-rectangle">
+        <h3>Stay Updated</h3>
+
+        <span class="stay-updated-text">
+          Stay updated with new features, product development <br />
+          and offers to receive our newsletters on Recruitment
+        </span>
+        <news-letter-form />
+      </div>
     </div>
     <Footer />
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import Footer from '~/components/home/Footer.vue'
-import Button from '../types/button'
-import CardData from '../types/card'
+import CircleVertical from '~/components/home/CircleVertical.vue'
+import Button from '~/types/button'
+import CardData from '~/types/card'
 
 export default defineComponent({
-  components: { Footer },
+  components: { CircleVertical },
   setup() {
     const buttonData = ref<Button[]>([
       {
@@ -174,6 +141,11 @@ export default defineComponent({
       },
       {
         title: 'Try for free',
+        hasBackground: false,
+        link: '',
+      },
+      {
+        title: 'Request a demo',
         hasBackground: false,
         link: '',
       },
@@ -204,128 +176,79 @@ export default defineComponent({
 
     return { buttonData, cardData }
   },
-
-  data() {
-    return {
-      firstButton: {},
-    }
-  },
 })
 </script>
-
 <style scoped>
-.row {
-  width: 1350px;
+.hire-talent {
+  font-size: 24px;
 }
-h2 {
-  margin-top: 80px;
-  font-size: 64px;
+.card-div {
+  margin-top: 50px;
+  padding-right: 80px;
 }
-.stay-updated {
-  margin-top: 100px;
-  position: relative;
-  height: 400px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.card-section {
-  margin-top: 180px;
-  justify-content: space-between;
-}
-.stay-updated::before {
-  content: '';
-  background-image: url('../assets/images/stay_updated.svg');
-  background-size: cover;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  opacity: 1;
-}
-.we-offer-section {
-  margin-top: 80px;
-}
-.wrapper {
-  width: auto;
-  height: auto;
-  float: left;
-}
-
-.circle {
-  width: 50px;
-  height: 50px;
-  border: 1px solid #076abe;
-  border-radius: 50%;
-  position: relative;
-}
-
-h5 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  color: black;
-}
-
-.vertical-line {
-  width: 2px;
-  height: 50px;
-  background: #076abe;
-  margin-left: 24px;
-}
-
-.home-container {
-  margin-left: 40px;
-  margin-right: 40px;
+.text-center {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  color: #196abe;
 }
 .talent-picture {
-  width: 25rem;
-}
-.row {
-  align-content: center;
-  align-items: center;
-}
-.container {
-  margin-left: 40px;
-  margin-top: 20px;
-}
-.group-div {
-  position: absolute;
-  right: 0;
-  margin-top: 100px;
+  width: 80%;
 }
 p {
-  font-size: 26px;
+  font-size: 24px;
+  color: #4d4d4d;
+  padding-right: 7em;
+}
+h5 {
+  font-size: 28px;
+  padding-bottom: 20px;
+  padding-top: 60px;
+}
+h2 {
+  padding-top: 1.5em;
+}
+.container-fluid {
+  margin-left: 50px;
+}
+.hero-paragraph {
+  font-size: 30px;
+  color: #100f0f63;
   margin-top: 30px;
-  font-weight: 300;
+  margin-bottom: 30px;
+}
+.stay-updated {
+  background-image: url('../assets/images/stay_updated.svg');
+  margin-top: 100px;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  height: 500px;
+  width: 100%;
+}
+.stay-updated-rectangle {
+  background: rgba(76, 84, 175, 0.5);
+  padding-top: 80px;
+  height: 500px;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+.stay-updated-text {
+  font-size: 24px;
+  font-weight: 200;
+  color: white;
+}
+.hero-text {
+  font-size: 25px;
+  padding-left: 40px;
 }
 .arrow-image {
   width: 40px;
 }
 .group-image {
-  width: 35rem;
-}
-span {
-  font-size: 28px;
-
-  font-weight: 600px;
-  padding-left: 25px;
-  padding-right: 10px;
-}
-
-.button-area {
-  margin-top: 30px;
-}
-
-.job-heading {
-  color: black;
-}
-blockquote {
-  margin-left: 20px;
-  padding-left: 40px;
+  width: 100%;
+  right: 0;
+  margin-top: 40px;
 }
 </style>

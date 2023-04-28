@@ -22,7 +22,19 @@ export default {
 }
 </script>
 <style scoped>
-div{
-  height:250px;
+strong{
+  font-size:24px;
+
+  color:#4d4d4d;
+
 }
+p{
+  color: #4d4d4d;;
+  font-size:20px;
+  padding-top:10px;
+}
+div{
+  height:300px;
+}
+
 </style>
