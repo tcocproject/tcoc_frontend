@@ -1,13 +1,15 @@
-name: Deploy to ECR
+name: Deploy to Kubernetes
 
 on:
  
   push:
     branches: 
+    - main
     - feature/johnpaul 
+    - feature/fix
     - develop
-    - master
-
+    - Feature/add-email-notification-for-OTP 
+#jobs
 jobs:
   BuildImage:
     runs-on: ubuntu-latest
@@ -32,35 +34,35 @@ jobs:
       env:
         ECR_REGISTRY: 715433393979.dkr.ecr.eu-north-1.amazonaws.com        ##${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: tcoc-frontend
-        IMAGE_TAG: latesttt
+        IMAGE_TAG: ${{ github.run_number }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         
-        
-        
- # Deployment:
- #   needs: BuildImage
- #   runs-on: ubuntu-latest
- #   steps:
- #     - name: Checkout Code
- #       uses: actions/checkout@v3
- #     - name: Install AWS CLI and kubectl
- #       run: |
- #         sudo apt-get update && sudo apt-get install -y awscli
- #         curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
- #         chmod +x ./kubectl
- #         sudo mv ./kubectl /usr/local/bin/kubectl
-     # - name: Authenticate with EKS cluster
-     #   id: aws-eks-auth
-     #   uses: aws-actions/amazon-ecr-login@v1
-     #   with:
-     #    region: eu-north-1
-     #    access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-     #    secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
-     # - name: Set Kubernetes context
-     #   run: |
-     #     aws eks update-kubeconfig --name TCOC-CLUSTER --region eu-north-1
-     # - name: Deploy to EKS cluster
-     #   run: |
-     #      kubectl apply -f /manifests
+      
+  Deployment:
+   needs: BuildImage
+   runs-on: ubuntu-latest
+   steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Update Image in Kubernetes Manifest
+        run: sed -i "s#SAMPLE#715433393979.dkr.ecr.eu-north-1.amazonaws.com/tcoc-frontend:v${{ github.run_number }}#g" manifests/deployment.yml    
+      - name: Install AWS CLI
+        run: |
+         sudo apt-get update
+         sudo apt-get install -y awscli
+         aws --version
+      - name: Configure AWS credentials
+        env:
+         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+         aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+         aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+         aws configure set region eu-north-1
+      - name: Update Kubeconfig
+        run: |
+         aws eks update-kubeconfig --name TCOC-CLUSTER --region eu-north-1
+      - name: Apply changes 
+        run: kubectl apply -f manifests/deployment.yml
