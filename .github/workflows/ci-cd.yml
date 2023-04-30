@@ -45,7 +45,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
       - name: Update Image in Kubernetes Manifest
-        run: sed -i "s#SAMPLE#715433393979.dkr.ecr.eu-north-1.amazonaws.com/tcoc-frontend:v${{ github.run_number }}#g" manifests/deployment.yml    
+        run: sed -i "s#SAMPLE#715433393979.dkr.ecr.eu-north-1.amazonaws.com/tcoc-frontend:${{ github.run_number }}#g" manifests/deployment.yml    
       - name: Install AWS CLI
         run: |
          sudo apt-get update
