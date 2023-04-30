@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tcoc-app-service-dev
+    type: app
+  name: tcoc-app-service-dev
+  namespace: tcoc-test-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tcoc-app-service-dev
+      type: app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tcoc-app-service-dev
+        type: app
+    spec:
+      volumes:
+        # - name: nginx-conf
+        #  configMap:
+        #    name: nginx-conf-1 
+      containers:
+      - image: SAMPLE
+        name: tcoc-test-app-dev
+          #volumeMounts:
+          #- name: nginx-conf
+          #  mountPath: /etc/nginx/conf.d/  
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+       # envFrom:
+       # - configMapRef:
+       #     name: later
+       # - configMapRef:
+       #     name: configure later
+        ports:
+        - containerPort: 80
+          name: access
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "1000m"
+            memory: "1Gi"
+      restartPolicy: Always
