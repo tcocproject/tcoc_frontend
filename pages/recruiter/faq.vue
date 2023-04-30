@@ -5,7 +5,7 @@
     <div class="hero">
       <div class="background-container">
         <h2>
-          Frequently <b>Asked <br />Question</b>
+          Frequently <b>Asked <br />Questions</b>
         </h2>
       </div>
     </div>
