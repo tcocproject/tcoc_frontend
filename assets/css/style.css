@@ -25,7 +25,9 @@ h1:after {
   left: 0.5em;
   margin-right: -50%;
 }
-
+.spinner{
+  background-color: #076abe;
+}
 .form-container {
   margin-left: 40px;
   margin-right: 40px;

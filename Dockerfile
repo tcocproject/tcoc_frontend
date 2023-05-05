@@ -13,6 +13,9 @@ RUN npm install
 # copy other project files
 COPY . .
 
+# generate static files
+RUN npm run generate
+
 # build the folder
 RUN npm run build
 

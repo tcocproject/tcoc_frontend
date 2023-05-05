@@ -57,6 +57,12 @@
 export default {}
 </script>
 <style>
+.link-text {
+  color: white;
+}
+.ml-auto a {
+  color: #076abe;
+}
 .btn-primary {
   background-color: #076abe;
   border: none;
@@ -65,7 +71,9 @@ export default {}
   border-radius: 50px;
   font-size: 18px;
 }
-
+a {
+  color: white;
+}
 .navbar-nav {
   padding-left: 30px;
 

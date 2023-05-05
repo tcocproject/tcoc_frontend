@@ -8,146 +8,144 @@
       <div class="heading">
         <b-img class="logo" src="../assets/images/logo.svg"> </b-img>
         <BorderButton :buttonData="buttonData[0]" />
+        <b-toast id="example-toast" title="BootstrapVue" static no-auto-hide>
+        </b-toast>
       </div>
+      <Toast ref="toast" />
       <h5>Create your employer account</h5>
-      <div class="form-container">
-        <div class="row">
-          <div class="col-lg-6 col-sm-12">
-            <b-form-group
-              id="fieldset-1"
-              label="First Name *"
-              label-for="input-1"
-              valid-feedback="Thank you!"
-            >
-              <b-form-input id="input-1" trim></b-form-input>
-            </b-form-group>
-          </div>
-          <div class="col-lg-6 col-sm-12">
-            <b-form-group
-              id="fieldset-1"
-              label="Last Name *"
-              label-for="input-1"
-              valid-feedback="Thank you!"
-            >
-              <b-form-input id="input-1" trim></b-form-input>
-            </b-form-group>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 col-sm-12">
-            <b-form-group
-              id="fieldset-1"
-              label="Email *"
-              label-for="input-1"
-              valid-feedback="Thank you!"
-            >
-              <b-form-input type="email" trim></b-form-input>
-            </b-form-group>
-          </div>
-          <div class="col-lg-6 col-sm-12">
-            <b-form-group
-              id="fieldset-1"
-              label="Phone Number *"
-              label-for="input-1"
-              valid-feedback="Thank you!"
-            >
-              <b-form-input id="input-1" trim></b-form-input>
-            </b-form-group>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 col-sm-12">
-            <b-form-group
-              id="fieldset-1"
-              label="Company Name"
-              label-for="input-1"
-              valid-feedback="Thank you!"
-            >
-              <b-form-input id="input-1" trim></b-form-input>
-            </b-form-group>
-          </div>
-          <div class="col-lg-6 col-sm-12">
-            <div class="form-group">
-              <label for="phone">Country *</label>
-              <select name="" id="" class="form-control">
-                <option value="">Nigeria</option>
-              </select>
+
+      <form @submit.prevent="onSubmit">
+        <div class="form-container">
+          <div class="row">
+            <div class="col-lg-6 col-sm-12">
+              <b-form-group
+                label="First Name *"
+                label-for="FirstName"
+                valid-feedback=""
+              >
+                <b-form-input
+                  trim
+                  type="text"
+                  v-model="formData.firstName"
+                  required
+                ></b-form-input>
+              </b-form-group>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+              <b-form-group label="Last Name *" label-for="lastName">
+                <b-form-input
+                  trim
+                  v-model="formData.lastName"
+                  required
+                ></b-form-input>
+              </b-form-group>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 col-sm-12">
-            <div class="form-group">
-              <label class="control-label">Password *</label>
-              <div>
-                <input
-                  id="password-field"
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  value="secret"
-                />
-                <span
-                  toggle="#password-field"
-                  class="fa fa-fw fa-eye field-icon toggle-password"
-                ></span>
+          <div class="row">
+            <div class="col-lg-6 col-sm-12">
+              <b-form-group label="Email *" label-for="email">
+                <b-form-input
+                  type="email"
+                  v-model="formData.email"
+                  trim
+                  required
+                ></b-form-input>
+              </b-form-group>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+              <b-form-group label="Phone Number *">
+                <b-form-input
+                  type="text"
+                  required
+                  v-model="formData.phoneNumber"
+                  trim
+                ></b-form-input>
+              </b-form-group>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-sm-12">
+              <b-form-group label="Company Name" label-for="company name">
+                <b-form-input
+                  trim
+                  v-model="formData.companyName"
+                ></b-form-input>
+              </b-form-group>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+              <div class="form-group">
+                <label for="phone">Country *</label>
+                <select name="" id="" class="form-control">
+                  <option value="">Nigeria</option>
+                </select>
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-sm-12">
-            <div class="form-group">
-              <label class="control-label">Confirm Password *</label>
-              <div>
-                <input
-                  id="password-field"
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  value="secret"
-                />
-                <span
-                  toggle="#password-field"
-                  class="fa fa-fw fa-eye field-icon toggle-password"
-                ></span>
+          <div class="row">
+            <div class="col-lg-6 col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Password *</label>
+                <password-text v-model="formData.password" />
+              </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Confirm Password *</label>
+                <password-text v-model="formData.confirmPassword" />
               </div>
             </div>
           </div>
+          <h1>Or sign up with</h1>
+          <div class="social-media">
+            <span class="social-border">
+              <b-img
+                class="handles"
+                src="../assets/images/google_colored.svg"
+              ></b-img>
+            </span>
+            <span class="social-border">
+              <b-img
+                class="handles"
+                src="../assets/images/facebook_color.svg"
+              ></b-img>
+            </span>
+          </div>
+          <b-spinner type="grow" label="Spinning" class="spinner"></b-spinner>
+          <div class="heading">
+            <Button :buttonData="buttonData[1]" @click="onSubmit()" />
+            <p>Are you job searching? <nuxt-link to="">Come here</nuxt-link></p>
+          </div>
         </div>
-        <h1>Or sign up with</h1>
-        <div class="social-media">
-          <span class="social-border">
-            <b-img
-              class="handles"
-              src="../assets/images/google_colored.svg"
-            ></b-img>
-          </span>
-          <span class="social-border">
-            <b-img
-              class="handles"
-              src="../assets/images/facebook_color.svg"
-            ></b-img>
-          </span>
-        </div>
-        <div class="heading">
-          <Button :buttonData="buttonData[1]" />
-          <p>Are you job searching? <nuxt-link to="">Come here</nuxt-link></p>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
+import AuthModule from '~/repository/auth'
 
 import Button from '../types/button'
+import { Register } from '../types/credentials'
 
 export default defineComponent({
   setup() {
+    const toast = ref()
+    const formData = reactive<Register>({
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      password: '',
+      companyId: '',
+      confirmPassWord: '',
+      country: 'Nigeria',
+      role: 'Recruiter',
+    })
+
     const buttonData = ref<Button[]>([
       {
         title: 'Login',
         hasBackground: false,
-        link: '',
+        link: '/login',
       },
 
       {
@@ -157,7 +155,16 @@ export default defineComponent({
       },
     ])
 
-    return { buttonData }
+    async function onSubmit() {
+      console.log(formData)
+      let authModule = new AuthModule()
+      const result = await authModule.register(formData)
+      console.log(result)
+      if (result.status !== 200 || result.status) {
+        toast.value.makeToast(result.data?.Message)
+      }
+    }
+    return { buttonData, formData, onSubmit, toast }
   },
 })
 </script>
@@ -167,7 +174,6 @@ export default defineComponent({
   margin-left: -20px;
   margin-top: -30px;
   margin-right: 10px;
-
   position: relative;
   z-index: 2;
 }

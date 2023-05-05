@@ -71,4 +71,11 @@ img {
   margin-bottom: 25px;
   width: 120px;
 }
+.container-fluid {
+  padding-left: 50px;
+}
+a {
+  color: white;
+  font-weight: 300;
+}
 </style>

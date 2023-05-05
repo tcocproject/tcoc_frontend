@@ -12,12 +12,12 @@
         <div class="row">
           <div class="col-lg-12 col-sm-12">
             <b-form-group
-              id="fieldset-1"
+              type="email"
               label="Email *"
-              label-for="input-1"
+              label-for="email"
               valid-feedback="Thank you!"
             >
-              <b-form-input id="input-1" trim></b-form-input>
+              <b-form-input required trim></b-form-input>
             </b-form-group>
           </div>
           <div class="col-lg-12 col-sm-12">
@@ -26,19 +26,7 @@
               <nuxt-link to="/forgot_password" style="float: right"
                 >Forgot Password</nuxt-link
               >
-              <div>
-                <input
-                  id="password-field"
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  value="secret"
-                />
-                <span
-                  toggle="#password-field"
-                  class="fa fa-fw fa-eye field-icon toggle-password"
-                ></span>
-              </div>
+              <password-text v-model="formData.password" />
             </div>
             <br />
             <WideButton :buttonData="buttonData[1]" />
@@ -78,11 +66,17 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { Login } from '../types/credentials'
 
 import Button from '../types/button'
 
 export default defineComponent({
   setup() {
+    const formData = ref<Login>({
+      email: '',
+      password: '',
+      remember: false,
+    })
     const buttonData = ref<Button[]>([
       {
         title: 'Sign Up',
@@ -97,7 +91,7 @@ export default defineComponent({
       },
     ])
 
-    return { buttonData }
+    return { buttonData, formData }
   },
 })
 </script>

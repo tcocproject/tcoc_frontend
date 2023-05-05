@@ -182,6 +182,9 @@ export default defineComponent({
 .hire-talent {
   font-size: 24px;
 }
+.hero-text a {
+  color: #076abe;
+}
 .card-div {
   margin-top: 50px;
   padding-right: 80px;
@@ -208,7 +211,7 @@ h2 {
   padding-top: 1.5em;
 }
 .container-fluid {
-  margin-left: 50px;
+  padding-left: 50px;
 }
 .hero-paragraph {
   font-size: 30px;
