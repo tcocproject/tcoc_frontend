@@ -13,11 +13,16 @@
         <br />
         <div class="row">
           <div class="col-lg-12 col-sm-12">
-         <OTPComponent
-         :digit-count="4"
-         />
-              <b-form-input id="input-1" trim></b-form-input>
-            </b-form-group>
+            <div style="width: 100px">
+              <v-otp-input
+                ref="otpInput"
+                input-classes="otp-input"
+                separator="-"
+                :num-inputs="4"
+                :should-auto-focus="true"
+                :is-input-num="true"
+              />
+            </div>
             <WideButton :buttonData="buttonData[0]" />
             <p>Code is timed out <nuxt-link to="">Resend OTP</nuxt-link></p>
           </div>
@@ -31,10 +36,10 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-
-import Button from '../types/button';
-export default defineComponent({
+import { ref } from 'vue'
+import Button from '../types/button'
+export default {
+  layout: 'empty',
   setup() {
     const buttonData = ref<Button[]>([
       {
@@ -46,9 +51,24 @@ export default defineComponent({
 
     return { buttonData }
   },
-})
+}
 </script>
 <style scoped>
+.otp-input {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin: 20px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.otp-input::-webkit-inner-spin-button,
+.otp-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .back-to-login {
   position: fixed;
   left: 22%;
@@ -70,7 +90,7 @@ export default defineComponent({
 input {
   height: 60px;
   border-radius: 20px;
-  width: 100%;
+  width: 20%;
   margin-bottom: 30px;
 }
 .social-border {

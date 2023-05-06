@@ -16,4 +16,9 @@ export  interface Login{
     remember: boolean,
 }
 
+export interface ForgotPassword{
+    email: string,
+    type: number
+}
+
 

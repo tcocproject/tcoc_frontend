@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar />
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6">
@@ -121,18 +120,17 @@
         <news-letter-form />
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import CircleVertical from '~/components/home/CircleVertical.vue'
+
 import Button from '~/types/button'
 import CardData from '~/types/card'
 
 export default defineComponent({
-  components: { CircleVertical },
   setup() {
+    layout: '/home'
     const buttonData = ref<Button[]>([
       {
         title: 'Post a Job',

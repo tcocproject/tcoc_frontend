@@ -7,72 +7,94 @@
       </div>
       <div class="form-container">
         <hr />
-        <h4>Welcome</h4>
-        <br />
-        <div class="row">
-          <div class="col-lg-12 col-sm-12">
-            <b-form-group
-              type="email"
-              label="Email *"
-              label-for="email"
-              valid-feedback="Thank you!"
-            >
-              <b-form-input required trim></b-form-input>
-            </b-form-group>
-          </div>
-          <div class="col-lg-12 col-sm-12">
-            <div class="form-group">
-              <label class="control-label">Password</label>
-              <nuxt-link to="/forgot_password" style="float: right"
-                >Forgot Password</nuxt-link
+        <form @submit.prevent="onSubmit">
+          <h4>Welcome</h4>
+          <br />
+          <div class="row">
+            <div class="col-lg-12 col-sm-12">
+              <b-form-group
+                label="Email *"
+                label-for="email"
+                required
+                valid-feedback="Thank you!"
               >
-              <password-text v-model="formData.password" />
+                <b-form-input
+                  type="email"
+                  v-model="formData.email"
+                  required
+                  trim
+                ></b-form-input>
+              </b-form-group>
             </div>
-            <br />
-            <WideButton :buttonData="buttonData[1]" />
+            <div class="col-lg-12 col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Password</label>
+                <nuxt-link to="/forgot_password" style="float: right"
+                  >Forgot Password</nuxt-link
+                >
+                <password-text v-model="formData.password" />
+              </div>
+              <br />
+              <b-spinner
+                type="grow"
+                label="Spinning"
+                class="spinner"
+                v-if="isLoading"
+              ></b-spinner>
+              <WideButton :buttonData="buttonData[1]" v-if="!isLoading" />
+            </div>
           </div>
-        </div>
 
-        <h1>Or sign up with</h1>
-        <div class="social-media">
-          <span class="social-border">
-            <b-img
-              class="handles"
-              src="../assets/images/google_colored.svg"
-            ></b-img>
-          </span>
-          <span class="social-border">
-            <b-img
-              class="handles"
-              src="../assets/images/facebook_color.svg"
-            ></b-img>
-          </span>
-        </div>
-        <div>
-          <p>Don't have an account? <nuxt-link to="">Sign up now</nuxt-link></p>
-          <hr />
-          <p>
-            Want to sign in as a talent?
-            <nuxt-link to="">Sign in now</nuxt-link>
-          </p>
-        </div>
+          <h1>Or sign up with</h1>
+          <div class="social-media">
+            <span class="social-border">
+              <b-img
+                class="handles"
+                src="../assets/images/google_colored.svg"
+              ></b-img>
+            </span>
+            <span class="social-border">
+              <b-img
+                class="handles"
+                src="../assets/images/facebook_color.svg"
+              ></b-img>
+            </span>
+          </div>
+          <div>
+            <p>
+              Don't have an account? <nuxt-link to="">Sign up now</nuxt-link>
+            </p>
+            <hr />
+            <p>
+              Want to sign in as a talent?
+              <nuxt-link to="">Sign in now</nuxt-link>
+            </p>
+          </div>
+        </form>
       </div>
     </div>
 
     <div class="split right">
+      <Toast ref="toast" />
       <b-img src="../assets/images/login_image.svg" class="lady"></b-img>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { reactive, ref } from 'vue'
+import AuthModule from '~/repository/auth'
 import { Login } from '../types/credentials'
 
 import Button from '../types/button'
 
-export default defineComponent({
+export default {
+  layout: 'empty',
   setup() {
-    const formData = ref<Login>({
+    layout: 'empty'
+
+    const toast = ref()
+    let isLoading = ref<boolean>(false)
+    const formData = reactive<Login>({
       email: '',
       password: '',
       remember: false,
@@ -91,9 +113,20 @@ export default defineComponent({
       },
     ])
 
-    return { buttonData, formData }
+    async function onSubmit() {
+      isLoading.value = true
+
+      let authModule = new AuthModule()
+      const result = await authModule.login(formData)
+      if (result.status !== 200 || result.status) {
+        toast.value.makeToast(result.data?.Message)
+        isLoading.value = false
+      }
+    }
+
+    return { buttonData, formData, isLoading, onSubmit, toast }
   },
-})
+}
 </script>
 <style scoped>
 .field-icon {
@@ -107,9 +140,6 @@ export default defineComponent({
 }
 
 input {
-  height: 60px;
-  border-radius: 20px;
-  width: 100%;
   margin-bottom: 30px;
 }
 
@@ -194,5 +224,11 @@ img {
 }
 .logo {
   width: 120px;
+}
+input {
+  height: 50px;
+  border-radius: 20px;
+
+  width: 100%;
 }
 </style>

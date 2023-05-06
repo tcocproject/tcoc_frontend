@@ -13,36 +13,52 @@
         <br />
         <div class="row">
           <div class="col-lg-12 col-sm-12">
-            <b-form-group
-              id="fieldset-1"
-              label="Email *"
-              label-for="input-1"
-              valid-feedback="Thank you!"
-            >
-              <b-form-input id="input-1" trim></b-form-input>
-            </b-form-group>
-            <WideButton :buttonData="buttonData[0]" />
+            <form action="" @submit.prevent="onSubmit">
+              <b-form-group id="fieldset-1" label="Email *" label-for="email">
+                <b-form-input
+                  trim
+                  required
+                  v-model="formData.email"
+                ></b-form-input>
+              </b-form-group>
+              <WideButton :buttonData="buttonData[0]" />
+            </form>
           </div>
         </div>
-
-        <div class="back-to-login">
+        <b-spinner
+          type="grow"
+          label="Spinning"
+          class="spinner"
+          v-if="isLoading"
+        ></b-spinner>
+        <div class="back-to-login" v-if="!isLoading">
           <nuxt-link to="">Back to login</nuxt-link>
         </div>
       </div>
     </div>
 
     <div class="split right">
+      <Toast ref="toast" />
       <b-img src="../assets/images/login_image.svg" class="lady"></b-img>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-
+import { reactive, ref } from 'vue'
+import Router from 'vue-router'
+import { ForgotPassword } from '~/types/credentials'
 import Button from '../types/button'
 
-export default defineComponent({
-  setup() {
+export default {
+  layout: 'empty',
+  setup(context) {
+    let isLoading = ref<boolean>(false)
+    const toast = ref()
+    const formData = reactive<ForgotPassword>({
+      email: '',
+      type: 1,
+    })
+
     const buttonData = ref<Button[]>([
       {
         title: 'Confirm',
@@ -51,9 +67,23 @@ export default defineComponent({
       },
     ])
 
-    return { buttonData }
+    async function onSubmit() {
+      // isLoading.value = true
+      // let authModule = new AuthModule()
+      // let result = await authModule.passwordReset(formData)
+      // if (result.status !== 200 && result.status !== 201) {
+      //   toast.value.makeToast(result.data?.Message)
+      //   isLoading.value = false
+      //   return
+      // }
+      let router = new Router()
+
+      router.push('login')
+    }
+
+    return { buttonData, onSubmit, isLoading, formData, toast }
   },
-})
+}
 </script>
 <style scoped>
 .back-to-login {

@@ -4,7 +4,11 @@ h2{
     font-size: 64px;;
 
 }
-
+input select {
+  height: 50px;
+  border-radius: 20px;
+  width: 100%;
+}
 h1:before,
 h1:after {
   background-color: #c7c9d9;

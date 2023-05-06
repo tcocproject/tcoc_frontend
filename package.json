@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt dev",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -12,16 +12,15 @@
     "lintfix": "prettier --write --list-different ."
   },
   "dependencies": {
+    "@bachdgvn/vue-otp-input": "^1.0.8",
     "@nuxtjs/axios": "^5.13.6",
     "@vuelidate/core": "^2.0.2",
     "@vuelidate/validators": "^2.0.2",
     "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.25.3",
-    "nuxt": "^2.15.8",
     "ofetch": "^1.0.1",
     "vue": "^2.7.10",
-    "vue-pincode-input": "^0.4.0",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
   },
@@ -29,9 +28,22 @@
     "@nuxt/types": "^2.15.8",
     "@nuxt/typescript-build": "^2.1.0",
     "eslint-config-prettier": "^8.5.0",
+    "nuxt": "2.15.2",
     "prettier": "^2.7.1",
     "sass": "^1.62.0",
     "sass-loader": "10.1.1",
     "webpack": "^4.46.0"
-  }
+  },
+  "description": "## Build Setup",
+  "main": "nuxt.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tcocproject/tcoc_frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tcocproject/tcoc_frontend/issues"
+  },
+  "homepage": "https://github.com/tcocproject/tcoc_frontend#readme"
 }

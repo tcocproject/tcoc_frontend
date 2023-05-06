@@ -35,11 +35,10 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-
+import { ref } from 'vue'
 import Button from '../types/button'
-
-export default defineComponent({
+export default {
+  layout: 'empty',
   setup() {
     const buttonData = ref<Button[]>([
       {
@@ -57,7 +56,31 @@ export default defineComponent({
 
     return { buttonData }
   },
-})
+}
+// import { defineComponent, ref } from 'vue'
+
+// import Button from '../types/button'
+
+// export default defineComponent({
+//   setup() {
+//     layout: 'empty'
+//     const buttonData = ref<Button[]>([
+//       {
+//         title: 'Continue',
+//         hasBackground: false,
+//         link: '',
+//       },
+
+//       {
+//         title: 'Login',
+//         hasBackground: false,
+//         link: '/login',
+//       },
+//     ])
+
+//     return { buttonData }
+//   },
+// })
 </script>
 <style scoped>
 .lady {

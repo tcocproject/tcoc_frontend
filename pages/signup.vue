@@ -8,8 +8,6 @@
       <div class="heading">
         <b-img class="logo" src="../assets/images/logo.svg"> </b-img>
         <BorderButton :buttonData="buttonData[0]" />
-        <b-toast id="example-toast" title="BootstrapVue" static no-auto-hide>
-        </b-toast>
       </div>
       <Toast ref="toast" />
       <h5>Create your employer account</h5>
@@ -110,9 +108,18 @@
               ></b-img>
             </span>
           </div>
-          <b-spinner type="grow" label="Spinning" class="spinner"></b-spinner>
+          <b-spinner
+            type="grow"
+            label="Spinning"
+            class="spinner"
+            v-if="isLoading"
+          ></b-spinner>
           <div class="heading">
-            <Button :buttonData="buttonData[1]" @click="onSubmit()" />
+            <Button
+              :buttonData="buttonData[1]"
+              @click="onSubmit()"
+              v-if="!isLoading"
+            />
             <p>Are you job searching? <nuxt-link to="">Come here</nuxt-link></p>
           </div>
         </div>
@@ -121,15 +128,19 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import AuthModule from '~/repository/auth'
 
 import Button from '../types/button'
 import { Register } from '../types/credentials'
 
-export default defineComponent({
+export default {
+  layout: 'empty',
+
   setup() {
     const toast = ref()
+
+    const isLoading = ref<boolean>(false)
     const formData = reactive<Register>({
       firstName: '',
       lastName: '',
@@ -156,17 +167,20 @@ export default defineComponent({
     ])
 
     async function onSubmit() {
+      isLoading.value = true
       console.log(formData)
       let authModule = new AuthModule()
       const result = await authModule.register(formData)
       console.log(result)
       if (result.status !== 200 || result.status) {
+        isLoading.value = false
         toast.value.makeToast(result.data?.Message)
+        return
       }
     }
-    return { buttonData, formData, onSubmit, toast }
+    return { buttonData, formData, onSubmit, toast, isLoading }
   },
-})
+}
 </script>
 <style scoped>
 .field-icon {
@@ -177,14 +191,12 @@ export default defineComponent({
   position: relative;
   z-index: 2;
 }
-
-input,
 select {
-  height: 48px;
+  height: 50px;
   border-radius: 20px;
+
   width: 100%;
 }
-
 .lady {
   position: fixed;
   left: 0%;
@@ -197,7 +209,11 @@ h1 {
   margin-top: 30px;
   color: #636363;
 }
-
+input {
+  height: 50px;
+  border-radius: 20px;
+  width: 100%;
+}
 p {
   font-size: 26px;
   color: #636363;
