@@ -1,5 +1,5 @@
 #Multi-Step Docker Builds#
-FROM node:alpine as builder
+FROM node:16.3.0-alpine as builder
 
 # set the working directory for container
 WORKDIR /app
