@@ -88,7 +88,9 @@ export default {
   left: 0%;
   width: 50%;
 }
-
+a {
+  color: #076abe;
+}
 .button {
   margin-top: 80px;
 }

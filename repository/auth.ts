@@ -1,4 +1,4 @@
-import { ForgotPassword, Login, Register } from "~/types/credentials";
+import { EmailConfirmOTP, ForgotPassword, Login, Register } from "~/types/credentials";
 import HttpFactory from "./factory";
 
 
@@ -13,6 +13,10 @@ class AuthModule {
     }
     async passwordReset(credentials: ForgotPassword) {
         return await HttpFactory.request('POST', `${this.RESOURCE}/forget-password`, credentials)
+    }
+
+    async registrationOTP(credentials: EmailConfirmOTP) {
+        return await HttpFactory.request('POST', `${this.RESOURCE}/confirm-email`, credentials)
     }
  
 }

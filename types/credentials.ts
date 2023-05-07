@@ -3,6 +3,7 @@
 export  interface Register{
     firstName: string,
     lastName: string,
+    email:string
     phoneNumber: string,
     password: string,
     confirmPassWord: string,
@@ -18,6 +19,11 @@ export  interface Login{
 
 export interface ForgotPassword{
     email: string,
+    type: number
+}
+export interface EmailConfirmOTP{
+    email: string,
+    otp: string,
     type: number
 }
 

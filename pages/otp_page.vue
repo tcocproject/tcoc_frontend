@@ -8,22 +8,16 @@
         <br />
         <hr />
         <h4>Confirm account</h4>
+
         <br />
         <h6>Enter the verification code sent to you</h6>
         <br />
         <div class="row">
           <div class="col-lg-12 col-sm-12">
-            <div style="width: 100px">
-              <v-otp-input
-                ref="otpInput"
-                input-classes="otp-input"
-                separator="-"
-                :num-inputs="4"
-                :should-auto-focus="true"
-                :is-input-num="true"
-              />
-            </div>
-            <WideButton :buttonData="buttonData[0]" />
+            <form action="" @submit.prevent="onSubmit">
+              <input type="text" name="" id="" v-model="formData.otp" />
+              <WideButton :buttonData="buttonData[0]" />
+            </form>
             <p>Code is timed out <nuxt-link to="">Resend OTP</nuxt-link></p>
           </div>
         </div>
@@ -31,16 +25,24 @@
     </div>
 
     <div class="split right">
+      <Toast ref="toast" />
       <b-img src="../assets/images/login_image.svg" class="lady"></b-img>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
+import AuthModule from '~/repository/auth'
+import { EmailConfirmOTP } from '~/types/credentials'
 import Button from '../types/button'
 export default {
   layout: 'empty',
   setup() {
+    const formData = reactive<EmailConfirmOTP>({
+      email: '',
+      type: 0,
+      otp: '',
+    })
     const buttonData = ref<Button[]>([
       {
         title: 'Confirm',
@@ -48,27 +50,24 @@ export default {
         link: '',
       },
     ])
+    const toast = ref()
+    let isLoading = ref<boolean>(false)
 
-    return { buttonData }
+    async function onSubmit() {
+      isLoading.value = true
+
+      let authModule = new AuthModule()
+      const result = await authModule.registrationOTP(formData)
+      if (result.status !== 200 || result.status) {
+        toast.value.makeToast(result.data?.Message)
+        isLoading.value = false
+      }
+    }
+    return { buttonData, formData, onSubmit }
   },
 }
 </script>
 <style scoped>
-.otp-input {
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  margin: 20px;
-  font-size: 20px;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  text-align: center;
-}
-.otp-input::-webkit-inner-spin-button,
-.otp-input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 .back-to-login {
   position: fixed;
   left: 22%;
@@ -87,12 +86,12 @@ export default {
   z-index: 2;
 }
 
-input {
-  height: 60px;
+input select {
+  height: 50px;
   border-radius: 20px;
-  width: 20%;
-  margin-bottom: 30px;
+  width: 100%;
 }
+
 .social-border {
   border: 2px solid #c7c9d9;
   border-radius: 10px;

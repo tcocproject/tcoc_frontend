@@ -131,9 +131,10 @@
 import { reactive, ref } from 'vue'
 import AuthModule from '~/repository/auth'
 
+import StorageKeys from '../composables/keys'
+import LocalStorageService from '../composables/local_storage'
 import Button from '../types/button'
 import { Register } from '../types/credentials'
-
 export default {
   layout: 'empty',
 
@@ -144,6 +145,7 @@ export default {
     const formData = reactive<Register>({
       firstName: '',
       lastName: '',
+      email: '',
       phoneNumber: '',
       password: '',
       companyId: '',
@@ -172,11 +174,13 @@ export default {
       let authModule = new AuthModule()
       const result = await authModule.register(formData)
       console.log(result)
-      if (result.status !== 200 || result.status) {
+      if (result.status !== 200 && result.status !== 201) {
         isLoading.value = false
         toast.value.makeToast(result.data?.Message)
         return
       }
+      LocalStorageService.saveDataToDisk(StorageKeys.email, formData.email)
+      window.location.href = '/otp_page'
     }
     return { buttonData, formData, onSubmit, toast, isLoading }
   },

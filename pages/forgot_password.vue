@@ -45,13 +45,13 @@
 </template>
 <script lang="ts">
 import { reactive, ref } from 'vue'
-import Router from 'vue-router'
+import useRouter from 'vue-router'
 import { ForgotPassword } from '~/types/credentials'
 import Button from '../types/button'
 
 export default {
   layout: 'empty',
-  setup(context) {
+  setup() {
     let isLoading = ref<boolean>(false)
     const toast = ref()
     const formData = reactive<ForgotPassword>({
@@ -76,9 +76,7 @@ export default {
       //   isLoading.value = false
       //   return
       // }
-      let router = new Router()
-
-      router.push('login')
+      const route = new useRouter()
     }
 
     return { buttonData, onSubmit, isLoading, formData, toast }
